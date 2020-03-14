@@ -50,22 +50,26 @@
 (defvar helm-slack-channels-source (helm-build-sync-source "Channels (Slack)"
                                      :persistent-action #'helm-slack-persistent-action
                                      :action helm-slack-actions
-                                     :candidates #'helm-slack-build-channels-candidates))
+                                     :candidates #'helm-slack-build-channels-candidates
+                                     :migemo t))
 
 (defvar helm-slack-groups-source (helm-build-sync-source "Private Channels (Slack)"
                                    :persistent-action #'helm-slack-persistent-action
                                    :action helm-slack-actions
-                                   :candidates #'helm-slack-build-groups-candidates))
+                                   :candidates #'helm-slack-build-groups-candidates
+                                   :migemo t))
 
 (defvar helm-slack-ims-source (helm-build-sync-source "Direct Messages (Slack)"
                                 :persistent-action #'helm-slack-persistent-action
                                 :action helm-slack-actions
-                                :candidates #'helm-slack-build-ims-candidates))
+                                :candidates #'helm-slack-build-ims-candidates
+                                :migemo t))
 
 (defvar helm-slack-source (helm-build-sync-source "Slack"
                             :persistent-action #'helm-slack-persistent-action
                             :action helm-slack-actions
-                            :candidates #'helm-slack-build-candidates))
+                            :candidates #'helm-slack-build-candidates
+                            :migemo t))
 
 (defcustom helm-slack-sources
   '(helm-slack-source)
@@ -189,7 +193,8 @@ pre defined sources are `helm-slack-channels-source', `helm-slack-groups-source'
                    :prompt "Select Member : "
                    :sources (helm-build-sync-source "Members"
                               :candidates candidates
-                              :action helm-slack-members-actions)))))
+                              :action helm-slack-members-actions
+                              :migemo t)))))
     (slack-conversations-members room team cursor #'success)))
 
 (defun helm-slack-display-user (candidate)
@@ -289,7 +294,8 @@ use `slack-select-unread-rooms' instead."
                                     :sources (list (helm-build-sync-source "All Unreads"
                                                      :persistent-action #'helm-slack-persistent-action
                                                      :action helm-slack-unreads-actions
-                                                     :candidates candidates)))))))))
+                                                     :candidates candidates
+                                                     :migemo t)))))))))
 
 (provide 'helm-slack)
 ;;; helm-slack.el ends here
